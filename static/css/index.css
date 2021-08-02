@@ -1,0 +1,21 @@
+
+
+.wrap-login100 {
+  width: 440px;
+  height: auto;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+
+.login100-form-title {
+  display: block;
+  font-family: sans-serif;
+  font-size: 39px;
+  /*color: #333333;*/
+  line-height: 1.2;
+  text-align: center;
+  background: -webkit-linear-gradient(#00b8e6, #00b8e6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

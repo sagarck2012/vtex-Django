@@ -1,0 +1,361 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Viyellatex</title>
+    <!-- <link rel="stylesheet" href="topnav_styles.css"> -->
+    <link rel="stylesheet" href="{% static '' %}css/try.css">
+    <link rel="stylesheet" href="{% static '' %}css/trytopnav.css">
+    <link rel="stylesheet" href="{% static '' %}css/sample.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static ''%}fonts/iconic/css/material-design-iconic-font.min.css">
+
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+
+
+    <!-- //////////////// edit page style//////////////// -->
+
+    <link rel="stylesheet" type="text/css" href="{% static ''%}css/unified_template.css">
+    <link id="style1" rel="stylesheet" type="{% static ''%}text/css" href="css/common_style.css">
+    <link rel="stylesheet" type="text/css" href="{% static ''%}css/user_registration.css">
+    <link rel="stylesheet" type="text/css" href="{% static ''%}css/step_style.css">
+    <link rel="stylesheet" href="{% static ''%}css/trytopnav.css">
+    <link rel="stylesheet" href="{% static ''%}css/try.css">
+    <script src="{% static ''%}js/main.js"></script>
+    <script type="text/javascript" src="{% static ''%}js/fullscreen.js"></script>
+
+
+
+    <script>
+        $(document).ready(function(){
+            $(".hamburger").click(function(){
+                $(".wrapper").toggleClass("active")
+            })
+        });
+    </script>
+    <script>
+        $(document).ready(function(){
+            $(".profile .icon_wrap").click(function(){
+                $(this).parent().toggleClass("active");
+                $(".notifications").removeClass("active");
+            });
+
+            $(".notifications .icon_wrap").click(function(){
+                $(this).parent().toggleClass("active");
+                $(".profile").removeClass("active");
+            });
+
+            $(".show_all .link").click(function(){
+                $(".notifications").removeClass("active");
+                $(".popup").show();
+            });
+
+            $(".close").click(function(){
+                $(".popup").hide();
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+
+        function toggle() {
+            var el = document.getElementById("style1");
+            if (el.href.match("css/common_style.css")) {
+                el.href = "css/nightmode_common.css";
+            }
+            else {
+                el.href = "css/common_style.css";
+            }
+        }
+
+    </script>
+
+
+</head>
+<body>
+
+{% include 'include/topbar.html' %}
+
+
+
+
+<div class="wrapper active">
+    <div class="main_body ">
+
+        {% include 'include/sidebar.html' %}
+
+
+
+        <div class="container vix">
+
+
+
+            <div style="text-align:center; font-size: 26px; color: #ffffff;"><img width="3%" src="{% static '' %}image/globe_with_satellites.svg"/><strong>Machine Run Time Dashboard</strong></div>
+
+            <br>
+
+
+            <div class="row" style="text-shadow: 2px 2px #000000;">
+                <div class="col-sm-4 ">
+                    <div class="b"><b> <h2 style="color:rgba(29,195,246,.9) ;"><i class="fas fa-chart-pie"></i><strong> Total: <span id="total">{{ total }}</span> </strong></h2> </b> </div>
+                </div>
+                <div class="col-sm-4 ">
+                    <div class="b"><b> <h2 style="color:limegreen;"><i class="fas fa-running"></i><strong> Online: <span id="online">{{online}}</span> </strong></h2> </b> </div>
+                </div>
+                <div class="col-sm-4 ">
+                    <div class="b"><b> <h2 style="color:rgba(255,57,65,.9) ;"><i class="fas fa-bell"></i><strong> Offline: <span id="offline">{{offline}}</span> </strong></h2> </b> </div>
+                </div>
+            </div>
+
+
+            <br>
+
+            <div class="col-sm-12"  align="center">
+                <table>
+                    <tr>
+
+                        <th ><div class="dot_g space_side"></div></th>
+                        <th><div class="legend">Running OK&nbsp;</div></th>
+                        <th ><div class="dot_y space_side"></div></th>
+                        <th><div class="legend">Running in Low RPM &nbsp;</div></th>
+                        <th><div class="dot_r  space_side"></div></th>
+                        <th><div class="legend">Machine Off/Error &nbsp;</div></th>
+                        <th><div class="dev_a  space_side"></div></th>
+                        <th><div class="legend">Device Active &nbsp;</div></th>
+                        <th><div class="dev_ia  space_side"></div></th>
+                        <th><div class="legend">Device Inactive &nbsp;</div></th>
+                    </tr>
+
+                </table>
+            </div>
+
+            <div style="margin-bottom: 50px;"></div>
+
+
+            <div class="row" id="device">
+                {% for machine in machine_list %}
+                    {#--------------------------------Device Div Start---------------------------------------------------- #}
+                    {% if machine.device_status == 0 %}
+                        <a href="{% url 'viyellatex:detail' machine.id %}">
+                            <div class="col-sm-2 inactive small_box">
+                                <div class="row">
+                                    <h3 class="box_h3"><i class="fas fa-tools"></i> <b>{{machine.machine_no}}</b>  <div class="dot_r" style="margin-left: 30px;"> </div></h3>
+                                </div>
+                                <div class="row pop">
+                                    <div class="rpm"><b style="font-size: 25px;">{{machine.rpm_value}}</b><b style="font-size: 15px;" > rpm</b></div>
+                                </div>
+
+
+                                <div class="row">
+
+                                    <div class="progress_outter">
+                                        <div class="progres_inner  active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:{{machine.runtime}}%; font-size: 10px;">
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </a>
+                    {% else %}
+
+                        <a href="{% url 'viyellatex:detail' machine.id %}">
+                            <div class="col-sm-2 box small_box">
+                                <div class="row">
+                                    <h3 class="box_h3"><i class="fas fa-tools"></i> <b>{{machine.machine_no}}</b>
+                                        {% if machine.rpm_status == 0  %}
+                                            <div class="dot_r" style="margin-left: 30px;"> </div>
+                                        {% elif machine.rpm_status == 1 %}
+                                            <div class="dot_g" style="margin-left: 30px;"> </div>
+                                        {% else %}
+                                            <div class="dot_y" style="margin-left: 30px;"> </div>
+                                        {% endif %}
+                                    </h3>
+                                </div>
+                                <div class="row pop">
+                                    <div class="rpm"><b style="font-size: 25px;">{{machine.rpm_value}}</b><b style="font-size: 15px;" > rpm</b></div>
+                                </div>
+
+
+                                <div class="row">
+
+                                    <div class="progress_outter" style="
+">
+                                        <div class="progres_inner  active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:{{machine.runtime}}%; font-size: 10px;">
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </a>
+                    {% endif %}
+                    {#--------------------------------Device Div End---------------------------------------------------- #}
+                {% endfor %}
+            </div>
+
+
+
+
+
+
+        </div>
+
+
+    </div>
+</div>
+
+
+{######################AJAX CALL######################}
+<script>
+    function update_data(){
+        console.log('function is being called');
+        $.ajax({
+            url: 'get_machine_data',
+
+            dataType: 'json',
+            success: function (data) {
+
+                {#console.log(data);#}
+                let machine_list = data["machine_list"];
+                console.log(machine_list);
+
+                document.getElementById('device').innerHTML='';
+                {#document.getElementById('total').innerHTML='';#}
+                {#document.getElementById('online').innerHTML='';#}
+                {#document.getElementById('offline').innerHTML='';#}
+                $('#total').html(data["total"]);
+                $('#online').html(data["online"]);
+                $('#offline').html(data["offline"]);
+
+                $.each(machine_list, function (index, value) {
+                    console.log(value);
+                    console.log(value['machine_no']);
+                    console.log(value['device_status']);
+                    if (value['device_status'] === 1){
+
+                        $("#device").append(
+
+
+                            '<a href="detail/'+value["id"]+'">' +
+                            '<div class="col-sm-2 box small_box">'+
+                            '<div class="row">' +
+                            '<h3 class="box_h3"><i class="fas fa-tools"></i> <b>'+ value['machine_no']+'</b>' +
+                            (value["rpm_status"] === 0 ? '<div class="dot_r" style="margin-left: 30px;"> </div>':value["rpm_status"] === 1 ? '<div class="dot_g" style="margin-left: 30px;"> </div>':'<div class="dot_y" style="margin-left: 30px;"> </div>')+
+
+
+                                    '</h3>'+
+                                    '</div>'+
+                                    '<div class="row pop">' +
+                                    '<div class="rpm"><b style="font-size: 25px;">'+ value['rpm_value'] + '</b><b style="font-size: 15px;" > rpm</b></div>'+
+                                    '</div>'+
+                                    '<div class="row">' +
+
+                                    '<div class="progress_outter">' +
+                                    '<div class="progres_inner  active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:'+value["runtime"]+ '%; font-size: 10px;">' +
+
+                                    '</div>'+
+                                    '</div>'+
+
+                                    '</div>'+
+
+
+                                    '</div>'+
+                                    '</a>'
+                            );
+
+                    }
+                    else{
+
+                        $("#device").append(
+
+
+                            '<a href="detail/'+value["id"]+'">' +
+                            '<div class="col-sm-2 inactive small_box">'+
+                            '<div class="row">' +
+                            '<h3 class="box_h3"><i class="fas fa-tools"></i> <b>'+ value['machine_no']+'</b>' +
+                            '<div class="dot_r" style="margin-left: 30px;"> </div></h3>'+
+                            '</div>'+
+                            '<div class="row pop">' +
+                            '<div class="rpm"><b style="font-size: 25px;">'+ value['rpm_value'] + '</b><b style="font-size: 15px;" > rpm</b></div>'+
+                            '</div>'+
+                            '<div class="row">' +
+
+                            '<div class="progress_outter">' +
+                            '<div class="progres_inner  active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:'+value["runtime"]+ '%; font-size: 10px;">' +
+
+                            '</div>'+
+                            '</div>'+
+
+                            '</div>'+
+
+
+                            '</div>'+
+                            '</a>'
+                        );
+                    }
+
+
+
+                });
+
+
+
+                {#document.getElementById("time").innerHTML = time_now;#}
+
+            },
+            error: function (jqXHR, exception) {
+                let msg = '';
+                if (jqXHR.status === 0) {
+                    msg = 'Not connect.\n Verify Network.';
+                } else if (jqXHR.status == 404) {
+                    msg = 'Requested page not found. [404]';
+                } else if (jqXHR.status == 500) {
+                    msg = 'Internal Server Error [500].';
+                } else if (exception === 'parsererror') {
+                    msg = 'Requested JSON parse failed.';
+                } else if (exception === 'timeout') {
+                    msg = 'Time out error.';
+                } else if (exception === 'abort') {
+                    msg = 'Ajax request aborted.';
+                } else {
+                    msg = 'Uncaught Error.\n' + jqXHR.responseText;
+                }
+                console.log(msg);
+            },
+
+
+        });
+
+    }
+
+    {# Making AJAX CALL every 15 seconds #}
+    setInterval(function(){
+        update_data()}, 15000)
+</script>
+
+
+</body>
+</html>

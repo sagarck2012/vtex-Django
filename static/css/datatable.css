@@ -1,0 +1,67 @@
+.mix{
+	background:#1e1e2f;
+padding: 20px 20px;
+}
+.container th{
+	background: #00001a;
+	color: white;
+}
+.container td{
+	background: #1e1e2f;
+	color:white ;
+}
+body{
+	background: #00001a;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active {
+    cursor: default;
+    color: white !important;
+    border: 1px solid transparent;
+    background: transparent;
+    box-shadow: none;
+}
+
+.dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter, .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_processing, .dataTables_wrapper .dataTables_paginate {
+    color: white;
+}
+
+button, input, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    background: #1e1e2f;
+    color: white;
+    margin-bottom: 10px;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    box-sizing: border-box;
+    display: inline-block;
+    min-width: 1.5em;
+    padding: 0.5em 1em;
+    margin-left: 2px;
+    text-align: center;
+    text-decoration: none !important;
+    cursor: pointer;
+    *cursor: hand;
+    color: #fff !important;
+    border: 1px solid transparent;
+    border-radius: 2px;
+}
+table.dataTable tbody td.select-checkbox:before, table.dataTable tbody th.select-checkbox:before {
+    content: ' ';
+    margin-top: -6px;
+    margin-left: -6px;
+    border: 1px solid #fff;
+    border-radius: 3px;
+}
+.mix .pos{
+	text-align: center;
+}
+
+.mix i{
+	color: #00e6e6;
+}
+
+table.table-hover > tbody > tr > td{
+    border:1px solid #00001a;
+}

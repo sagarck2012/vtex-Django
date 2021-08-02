@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Device Registration</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">	
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+
+	<link rel="stylesheet" type="text/css" href="{% static '' %}vendor/bootstrap/css/bootstrap.min.css">
+
+	<link rel="stylesheet" type="text/css" href="{% static '' %}fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+
+
+	<link rel="stylesheet" type="text/css" href="{% static '' %}fonts/iconic/css/material-design-iconic-font.min.css">
+
+
+	<link rel="stylesheet" type="text/css" href="{% static '' %}css/unified_template.css">
+	<link rel="stylesheet" type="text/css" href="{% static '' %}css/common_style.css">
+	<link rel="stylesheet" type="text/css" href="{% static '' %}css/device_registration.css">
+	<link rel="stylesheet" type="text/css" href="{% static ''%}css/alert_box.css">
+
+	
+	<script src="{% static '' %}js/main.js"></script>
+
+</head>
+<body>
+	
+	<div class="">
+		<div class="container-login100" >
+			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+				{#-----------------------------------MESSAGE--------------------------------------------------#}
+					{% if messages %}
+						{% for message in messages %}
+							{% if message.level_tag == 'error' %}
+							<div class="alert">
+								<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+								{{message.message}}
+							</div>
+							{% else %}
+							<div class="success">
+								<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+								{{message.message}}
+							</div>
+							{% endif %}
+						{% endfor %}
+					{% endif %}
+
+            <form class="login100-form validate-form" action="{% url 'device_management:device_add' %}" method="post">
+                {% csrf_token %}
+				<span class="login100-form-title p-b-49">
+						Add Device
+				</span>
+
+					<div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
+						<span class="label-input100">Device ID</span>
+						<input class="input100" type="text" name="device_id" placeholder="Enter Device Id">
+						<span class="focus-input100" data-symbol="&#xf295;"></span>
+					</div>
+					
+					<div class="wrap-input100 validate-input m-b-23" data-validate = "Phone is required">
+						<span class="label-input100">Location</span>
+						<input class="input100" type="text" name="location" placeholder="Enter location" required>
+						<span class="focus-input100" data-symbol="&#xf1a8;"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-23" data-validate = "Phone is required">
+						<span class="label-input100">Installation Date</span>
+						<input class="input100" type="date" name="installation_date" placeholder="Enter Installation Date" required>
+<!--						<span class="focus-input100" data-symbol="&#xf1a8;"></span>-->
+					</div>
+<!--
+<!--					<div class="wrap-input100 validate-input m-b-23" data-validate = "Phone is reauired">-->
+<!--						<span class="label-input100">Installed By</span>-->
+<!--						<input class="input100" type="text" name="phone" placeholder="Enter Address">-->
+<!--&lt;!&ndash;						<span class="focus-input100" data-symbol="&#xf1a8;"></span>&ndash;&gt;-->
+<!--					</div>-->
+
+<!--					<div class="wrap-input100 validate-input m-b-23" data-validate = "Phone is reauired">-->
+<!--						<span class="label-input100">Knitting Machine Brand</span>-->
+<!--						<input class="input100" type="text" name="phone" placeholder="Enter Address">-->
+<!--&lt;!&ndash;						<span class="focus-input100" data-symbol="&#xf1a8;"></span>&ndash;&gt;-->
+<!--					</div>-->
+
+					<div class="wrap-input100 validate-input m-b-23" data-validate = "Phone is required">
+						<span class="label-input100">Knitting Machine No.</span>
+						<input class="input100" type="number" name="machine_no" placeholder="Enter Machine No." required>
+<!--						<span class="focus-input100" data-symbol="&#xf1a8;"></span>-->
+					</div>
+
+				<br>
+				
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<button class="login100-form-btn">
+								Add
+							</button>
+						</div>
+					</div>
+
+					
+				</form>
+			</div>
+		</div>
+	</div>
+	
+
+	<div id="dropDownSelect1"></div>
+	
+
+</body>
+</html>

@@ -1,0 +1,246 @@
+{% extends 'viyellatex/base.html' %}
+{% load static %}
+{% block detalil_page_style1 %}
+    <link rel="stylesheet" href="{% static '' %}css/try.css">
+{% endblock %}
+{% block detail_page_script1 %}
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+{% endblock %}
+{% block content %}
+
+    <div class="container vix">
+
+        <div class="row">
+
+            <div class="col-sm-2 box small_box">
+
+                <div class="row">
+
+                    <h3 class="box_h3"><i class="fas fa-tools"></i> Machine No</h3>
+
+                    <h1 class="box_h1">{{device_data.knitting_machine_no}}</h1>
+
+                </div>
+
+            </div>
+
+            <div class="col-sm-2 box small_box">
+
+                <div class="row">
+
+                    <h3 class="box_h3"><i class="fas fa-exclamation-circle"></i> Machine Status</h3>
+
+                    <h1 class="box_h1">{% if device_data.rpm_status == 0 %}OFF{% else %}ON{% endif %}</h1>
+
+                </div>
+
+            </div>
+
+            <div class="col-sm-2 box small_box">
+
+                <div class="row">
+
+                    <h3 class="box_h3"><i class=" fas fa-tachometer-alt"></i> Speed</h3>
+
+                    <h1 class="box_h1">{{rpm_value}} <b>rpm</b></h1>
+
+                </div>
+
+            </div>
+
+            <div class="col-sm-2 box small_box">
+
+                <div class="row">
+
+                    <h3 class="box_h3"><i class="far fa-compass fa-spin"></i> Counter</h3>
+
+                    <h1 class="box_h1">{{rpm_status_1_today}}</h1>
+
+                </div>
+
+            </div>
+
+            <div class="col-sm-2 box small_box">
+
+                <div class="row">
+
+                    <h3 class="box_h3"><i class="fas fa-map-marker-alt"></i> Location</h3>
+
+                    <h1 class="box_h1">{{device_data.location}}</h1>
+
+                </div>
+
+            </div>
+
+            <div class="col-sm-2 box small_box">
+
+                <div class="row">
+
+                    <h3 class="box_h3"><i class="far fa-calendar-times"></i> Installation Date</h3>
+
+                    <h1 class="box_h1 small_letter">{{device_data.installation_date | date }}</h1>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="row mt_20">
+
+            <div class="col-sm-12 chart">
+                <div id="chart1"></div>
+            </div>
+
+            <div class="col-sm-12 chart">
+                <div id="chart2"></div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block detail_page_script2 %}
+
+    <script>
+
+        {# Defining global variables to pass to external js file conatining area graph, bar&line graph #}
+        let x_axis_data;
+        let area_graph_y_axis;
+        let bar_graph_y_axis;
+        let line_graph_y_axis;
+
+        {#################### Load default graph for current date ##################################}
+
+        {###################Making the default ajax call########################################}
+        $.ajax({
+            url: 'get_chart_data',
+            data:{
+                'day':1
+            },
+            dataType: 'json',
+            success: function (data) {
+
+                console.log(data);
+                x_axis_data = data['x_axis_data'];
+                area_graph_y_axis = data['area_graph_y_axis'];
+                bar_graph_y_axis = data['bar_graph_y_axis'];
+                line_graph_y_axis = data['line_graph_y_axis'];
+                {#console.log(x_axis_data);#}
+                {#console.log(area_graph_y_axis);#}
+                {#console.log(line_graph_y_axis);#}
+                {#console.log(bar_graph_y_axis);#}
+                {# load area_graph.js with axis data #}
+                $.getScript("{% static '' %}js/area_graph.js",function( data, textStatus, jqxhr ) {
+                    {#console.log( data ); // Data returned#}
+                    {#console.log( textStatus ); // Success#}
+                    console.log( jqxhr.status ); // 200
+                    console.log( "Load was performed." );
+                });
+                $.getScript("{% static '' %}js/line_bar_graph.js",function( data, textStatus, jqxhr ) {
+                    {#console.log( data ); // Data returned#}
+                    {#console.log( textStatus ); // Success#}
+                    console.log( jqxhr.status ); // 200
+                    console.log( "Load was performed." );
+                });
+            },
+            error: function (jqXHR, exception) {
+                let msg = '';
+                if (jqXHR.status === 0) {
+                    msg = 'Not connect.\n Verify Network.';
+                } else if (jqXHR.status == 404) {
+                    msg = 'Requested page not found. [404]';
+                } else if (jqXHR.status == 500) {
+                    msg = 'Internal Server Error [500].';
+                } else if (exception === 'parsererror') {
+                    msg = 'Requested JSON parse failed.';
+                } else if (exception === 'timeout') {
+                    msg = 'Time out error.';
+                } else if (exception === 'abort') {
+                    msg = 'Ajax request aborted.';
+                } else {
+                    msg = 'Uncaught Error.\n' + jqXHR.responseText;
+                }
+                console.log(msg);
+            },
+
+        });
+
+
+        {########### Get the chosen time from topbar & make dynamic ajax request for data ############}
+        $("#sel").change(function () {
+
+            let day = $("#sel").val();
+
+            console.log(day);
+
+            {###################Making the ajax call########################################}
+            $.ajax({
+                url: 'get_chart_data',
+                data:{
+                    'day':day
+                },
+                dataType: 'json',
+                success: function (data) {
+
+                    console.log(data);
+                    x_axis_data = data['x_axis_data'];
+                    area_graph_y_axis = data['area_graph_y_axis'];
+                    bar_graph_y_axis = data['bar_graph_y_axis'];
+                    line_graph_y_axis = data['line_graph_y_axis'];
+                    {#console.log(x_axis_data);#}
+                    {#console.log(area_graph_y_axis);#}
+                    $.getScript("{% static '' %}js/area_graph.js",function( data, textStatus, jqxhr ) {
+                        {#console.log( data ); // Data returned#}
+                        {#console.log( textStatus ); // Success#}
+                        console.log( jqxhr.status ); // 200
+                        console.log( "Load was performed." );
+                    });
+                    $.getScript("{% static '' %}js/line_bar_graph.js",function( data, textStatus, jqxhr ) {
+                    {#console.log( data ); // Data returned#}
+                    {#console.log( textStatus ); // Success#}
+                    {#console.log( jqxhr.status ); // 200#}
+                    {#console.log( "Load was performed." );#}
+                });
+
+
+                },
+                error: function (jqXHR, exception) {
+                    let msg = '';
+                    if (jqXHR.status === 0) {
+                        msg = 'Not connect.\n Verify Network.';
+                    } else if (jqXHR.status == 404) {
+                        msg = 'Requested page not found. [404]';
+                    } else if (jqXHR.status == 500) {
+                        msg = 'Internal Server Error [500].';
+                    } else if (exception === 'parsererror') {
+                        msg = 'Requested JSON parse failed.';
+                    } else if (exception === 'timeout') {
+                        msg = 'Time out error.';
+                    } else if (exception === 'abort') {
+                        msg = 'Ajax request aborted.';
+                    } else {
+                        msg = 'Uncaught Error.\n' + jqXHR.responseText;
+                    }
+                    console.log(msg);
+                },
+
+            });
+        });
+
+
+
+        {#var area_graph_x_axis = {{ area_graph_x_axis_data | safe }};#}
+        {#var area_graph_y_axis = {{ area_graph_y_axis_data | safe }};#}
+
+
+    </script>
+    <script src="{% static '' %}js/line_bar_graph.js"></script>
+    {#    <script src="{% static '' %}js/area_graph.js"></script>#}
+
+{% endblock %}

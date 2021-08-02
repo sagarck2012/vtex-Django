@@ -1,0 +1,57 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href=""></a>
+            <a class="navbar-brand" href="{% url 'viyellatex:home' %}"  style="font-size: 22px;margin-left: 10px;"><h1 class="neon" data-text="Weather Station">{{request.session.organization_name}}</h1></a>
+        </div>
+        <div class="collapse navbar-collapse mynav" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right ">
+                <li>
+
+
+
+                <li><a href="{% url 'viyellatex:home' %}" class="size"><i class=' fas fa-home'></i></a></li>
+                <li><a href="#intro" class="size"><i class=' fa fa-bell'></i></a></li>
+
+                {% if 'detail' in request.path %}
+                <li class="select2">
+
+                    <select id="sel" class="sel">
+                        <option value="" selected hidden>Select Time</option>
+                        <option value="1" >Today</option>
+                        <option value="7" >1 week</option>
+                        <option value="15" >15 days</option>
+                        <option value="30">1 Month</option>
+
+
+                    </select>
+
+                </li>
+                {% endif %}
+
+
+
+                <li class="dropdown beside">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class='fas fa-user' style="margin-left: 2px;"></i>
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+{#                        <li><a href="{% url 'user_management:profile %}" request.session.id><i class='fas fa-user'></i> Profile</a></li>#}
+{#                        <li><a href="#"><i class='fas fa-location-arrow'></i> Location</a></li>#}
+{#                        <li><a href="#"><i class='fa fa-cog fa'></i> Settings</a></li>#}
+                        <li><a href="{% url 'user_management:user_profile' request.session.id %}">Profile</a></li>
+                        <li><a href="{% url 'user_management:change_password'%}">Change Password</a></li>
+                        <li><a href="{% url 'user_management:logout' %}"><i class='fas fa-sign-out-alt'></i> Logout</a></li>
+
+                    </ul>
+                </li>
+                <li class="mar_left"><a href="#" class="size"><i onclick="toggleFullScreen()" class="glyphicon glyphicon-fullscreen"></i></a></li>
+            </ul>
+        </div>
+    </div>
+</nav>

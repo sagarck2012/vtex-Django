@@ -1,0 +1,321 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Viyalletax</title>
+	<!-- <link rel="stylesheet" href="topnav_styles.css"> -->
+	<link rel="stylesheet" href="{% static '' %}css/try.css">
+  <link rel="stylesheet" href="{% static '' %}css/trytopnav.css">
+  <link rel="stylesheet" href="{% static '' %}css/php.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="{% static '' %}fonts/iconic/css/material-design-iconic-font.min.css">
+	
+
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+
+
+<!-- //////////////// edit page style//////////////// -->
+
+  <link rel="stylesheet" type="text/css" href="{% static '' %}css/unified_template.css">
+  <link rel="stylesheet" type="text/css" href="{% static '' %}css/common_style.css">
+  <link rel="stylesheet" type="text/css" href="{% static '' %}css/user_registration.css">
+  <link rel="stylesheet" type="text/css" href="{% static '' %}css/step_style.css">
+  <link rel="stylesheet" href="{% static '' %}css/trytopnav.css">
+  <link rel="stylesheet" href="{% static '' %}css/try.css">
+    <link rel="stylesheet" type="text/css" href="{% static ''%}css/alert_box.css">
+
+  <script src="{% static '' %}js/main.js"></script>
+
+
+
+	<script>
+		$(document).ready(function(){
+			$(".hamburger").click(function(){
+			  $(".wrapper").toggleClass("active")
+			})
+		});
+	</script>
+	<script>
+		$(document).ready(function(){
+			$(".profile .icon_wrap").click(function(){
+			  $(this).parent().toggleClass("active");
+			  $(".notifications").removeClass("active");
+			});
+
+			$(".notifications .icon_wrap").click(function(){
+			  $(this).parent().toggleClass("active");
+			   $(".profile").removeClass("active");
+			});
+
+			$(".show_all .link").click(function(){
+			  $(".notifications").removeClass("active");
+			  $(".popup").show();
+			});
+
+			$(".close").click(function(){
+			  $(".popup").hide();
+			});
+		});
+	</script>
+
+
+
+</head>
+<body>
+
+
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a href=""></a>
+      <a class="navbar-brand" href="index.php"  style="font-size: 22px;margin-left: 10px;"><h1 class="neon" data-text="Weather Station">Viyalletax</h1></a>
+    </div>
+    <div class="collapse navbar-collapse mynav" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right ">
+        <li>
+  
+       
+
+        <li><a href="#intro" class="size"><i class=' fas fa-home'></i></a></li>
+        <li><a href="#intro" class="size"><i class=' fa fa-bell'></i></a></li>
+      
+
+         <li class="select2">
+         
+          <select id="sel" class="sel">
+             <option value="" selected hidden>Select Time</option>
+              <option>1 week</option>
+              <option>15 days</option>
+              <option>1 Month</option>
+              
+             
+          </select>
+          
+        </li>
+
+         
+          
+
+          <li class="dropdown beside">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <i class='fas fa-user' style="margin-left: 2px;"></i>
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#"><i class='fas fa-user'></i> Profile</a></li>
+            <li><a href="#"><i class='fas fa-location-arrow'></i> Location</a></li>
+            <li><a href="#"><i class='fa fa-cog fa'></i> Settings</a></li>
+            <li><a href="#"><i class='fas fa-sign-out-alt'></i> Logout</a></li>
+            
+          </ul>
+        </li>
+        <li class="mar_left"><a href="#" class="size"><i onclick="toggleFullScreen()" class="glyphicon glyphicon-fullscreen"></i></a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+  
+
+<div class="wrapper active">
+	<div class="main_body ">
+		
+	 <div class="sidebar_menu ">
+          <div class="inner__sidebar_menu">
+            
+            <ul>
+              <li>
+                <a href="index.html" > 
+                  <span class="icon">
+                    <i class="fas fa-border-all"></i></span>
+                  <span class="list">Dashboard</span>
+                </a>
+              </li>
+              
+                   <li>
+                    <a href="device_registration.html" class="active">
+                      <span class="icon"><i class="fas fa-chart-pie"></i></span>
+                      <span class="list">Device Registration</span>
+
+                    </a>
+                  </li>
+
+                  <li>
+                <a href="edit_page.html" class="">
+                  <span class="icon"><i class="fas fa-chart-pie"></i></span>
+                  <span class="list">Edit Device Registration</span>
+                </a>
+              </li>
+              <li>
+                <a href="datatable.html" class="">
+                  <span class="icon"><i class=" fas fa-table"></i></span>
+                  <span class="list">Datatable</span>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <span class="icon"><i class="fas fa-address-book"></i></span>
+                  <span class="list">Contact</span>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <span class="icon"><i class="fas fa-address-card"></i></span>
+                  <span class="list">About</span>
+                </a>
+              </li>
+           
+            </ul>
+
+
+
+            <div class="hamburger">
+              <div class="inner_hamburger">
+                  <span class="arrow">
+                      <i class="fas fa-bars"></i>
+                      <i class="fas fa-close"></i>
+                  </span>
+              </div>
+          </div>
+
+          </div>
+      </div>
+
+
+	 
+
+	    <div class="container vix">
+
+
+	 <div class="limiter">
+    <div class="container-login100" >
+      <div class="wrap-login100 ss p-l-55 p-r-55 p-t-65 p-b-54">
+<form id="regForm" class="login100-form validate-form" action="/user_registration.html">
+  <span class="login100-form-title p-b-20">
+            Add Device
+          </span><br>
+
+  <div class="tab"> 
+            <div class="wrap-input100 validate-input m-b-23" data-validate = "Device Id is reauired">
+            <span class="label-input100">Device id</span>
+            <input class="input100" type="text" name="device_id" placeholder="Enter Device Id">
+            <span class="focus-input100" data-symbol="&#xf129;"></span>
+          </div>
+
+          <div class="wrap-input100 validate-input m-b-23" data-validate = "Location is reauired">
+            <span class="label-input100">Location</span>
+            <input class="input100" type="text" name="location" placeholder="Enter Location">
+            <span class="focus-input100" data-symbol="&#xf1ab;"></span>
+          </div>
+
+          <div class="wrap-input100 validate-input m-b-23" data-validate = "Installer is reauired">
+            <span class="label-input100">Installer</span>
+            <input class="input100" type="text" name="ins_by" placeholder="Enter Installer">
+            <span class="focus-input100" data-symbol="&#xf207;"></span>
+          </div>
+ 
+
+
+  </div>
+  <div class="tab">
+
+          <div class="wrap-input100 validate-input m-b-23" data-validate = "Date is reauired">
+            <span class="label-input100">Installation Date</span>
+            <input class="input100" type="date" name="ins_date" placeholder="Enter Installation date">
+            <span class="focus-input100" data-symbol="&#xf32f;"></span>
+          </div>
+
+            <div class="wrap-input100 validate-input m-b-23" data-validate = "Brand is reauired">
+            <span class="label-input100">Knitting machine Brand</span>
+            <input class="input100" type="text" name="machine_brand" placeholder="Enter Brand">
+            <span class="focus-input100" data-symbol="&#xf187;"></span>
+          </div>
+          
+
+          <div class="wrap-input100 validate-input" data-validate="Machine No is required">
+            <span class="label-input100">Knitting machine No</span>
+            <input class="input100" type="text" name="machine_no" placeholder="Enter Machine No">
+            <span class="focus-input100" data-symbol="&#xf110;"></span>
+          </div>
+          
+        
+<br>
+
+
+
+  </div>
+  
+  <div class="row">
+    <div class="col-sm-6">
+
+    <div class="container-login100-form-btn m-b-15">
+    <div class="wrap-login100-form-btn">
+      <div class="login100-form-bgbtn"></div>
+            
+    <button class="login100-form-btn" type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+
+              
+      </div>
+  </div>
+</div>
+
+<div class="col-sm-6">
+  <div class="container-login100-form-btn">
+    <div class="wrap-login100-form-btn">
+      <div class="login100-form-bgbtn"></div>
+            
+    <button class="login100-form-btn" type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+              
+      </div>
+    </div>
+  </div>
+  </div>
+  
+     
+  <div class="step_align">
+    <span class="step"></span>
+    <span class="step"></span>
+   
+  </div>
+</form>
+  </div>
+    </div>
+  </div>
+  
+
+  <div id="dropDownSelect1"></div>
+
+
+
+<script type="text/javascript" src="js/step_form.js"></script>
+<script type="text/javascript" src="js/fullscreen.js"></script>
+
+     </div>
+
+
+</div>
+</div>
+
+</body>
+</html>

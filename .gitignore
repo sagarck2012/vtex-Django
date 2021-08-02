@@ -1,0 +1,11 @@
+*.xml
+.idea/
+*.iml
+venv/
+user_management/migrations/
+user_management/__pycache__/
+*.pyc
+vtex_app/migrations/
+vtex_app/__pycache__/
+device_management/migrations/
+device_management/__pycache__/

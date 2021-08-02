@@ -1,0 +1,75 @@
+{% extends 'user_management/base.html' %}
+{% load static %}
+{% block style %}
+    <!-- ////////////////table/////////// -->
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css">
+
+    <script src="{% static '' %}js/datatable2.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static '' %}css/datatable.css">
+{% endblock %}
+{% block content %}
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.level_tag == 'error' %}
+                <div class="alert">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    {{message.message}}
+                </div>
+            {% else %}
+                <div class="success">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    {{message.message}}
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+    <h1 style="color: white;text-align: center;">Organization List</h1>
+
+    <br>
+    <div class="col-sm-12 mix">
+        <table id="example" class=" table table-hover table-responsive" style="width:100%">
+            <thead>
+            <tr>
+
+                <th>Organization Name</th>
+                <th>Address</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th class="pos" style="text-align: center;">Edit</th>
+                <th class="pos" style="text-align: center;">Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for organization in organizations %}
+
+                <tr>
+
+                    <td>{{ organization.name }}</td>
+                    <td>{{organization.address}}</td>
+                    <td>{{organization.email}}</td>
+                    <td>{{organization.phone}}</td>
+                    <td><a href="{% url 'user_management:organization_edit' organization.id %}"><i class="fas fa-edit"></i></a></td>
+                    <td><a href="{% url 'user_management:organization_delete' organization.id %}"><i class="fas fa-edit"></i></a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+            <tfoot>
+
+
+
+            </tr>
+            </tfoot>
+        </table>
+
+
+
+    </div>
+{% endblock %}
+

@@ -1,0 +1,100 @@
+{% if request.session.user_role != 'view only' %}
+    <div class="sidebar_menu ">
+        <div class="inner__sidebar_menu">
+
+            <ul>
+                <li>
+                    <a href="{% url 'viyellatex:home' %}" {% if request.path == '/home/' %}class="active"{% endif %} >
+                  <span class="icon">
+                    <i class="fas fa-border-all"></i></span>
+                        {#                    <i class="icon-dashboard" style="background: white"></i></span>#}
+                        <span class="list">Dashboard</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'device_management:device_add' %}" {% if request.path == '/device/add/' %}class="active"{% endif %} >
+                        {#                        <span class="icon"><i class="fas fa-cog fa-spin"></i></span>#}
+                        <span class="icon"><i class="fas fa-plus"></i></span>
+                        <span class="list">Add Device</span>
+
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'device_management:device_list_active' %}" {% if request.path == '/device/list/active/' %}class="active"{% endif %} >
+                        {#                        <span class="icon"><i class="fas fa-cog fa-spin"></i></span>#}
+                        <span class="icon"><i class="fas fa-bars"></i></span>
+                        <span class="list">Active List</span>
+
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'device_management:device_list_inactive' %}" {% if request.path == '/device/list/inactive/' %}class="active"{% endif %} >
+                        {#                        <span class="icon"><i class="fas fa-cog fa-spin"></i></span>#}
+                        <span class="icon"><i class="fas fa-table"></i></span>
+                        <span class="list">Inactive List</span>
+
+                    </a>
+                </li>
+
+                {#                    <li>#}
+                {#                        <a href="edit_page.html" class="">#}
+                {#                            <span class="icon"><i class="fa fa-cogs"></i></span>#}
+                {#                            <span class="list">Edit Device Registration</span>#}
+                {#                        </a>#}
+                {#                    </li>#}
+                {#                <li>#}
+                {#                    <a href="#" class="">#}
+                {#                        <span class="icon"><i class=" fas fa-table"></i></span>#}
+                {#                        <span class="icon"><i class="fas fa-cog"></i></span>#}
+                {#                        <span class="list">Device Management</span>#}
+                {#                    </a>#}
+                {#                </li>#}
+                <li>
+                    <a href="{% url 'user_management:user_reg' %}" {% if request.path == '/user_reg/' %}class="active"{% endif %}>
+                        {#                        <span class="icon"><i class="fas fa-user-cog"></i></span>#}
+                        <span class="icon"><i class="fas fa-user-plus"></i></span>
+                        <span class="list">User Registration</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'user_management:user_list' %}" {% if request.path == '/user_list/' %}class="active"{% endif %}>
+                        {#                        <span class="icon"><i class=" fa fa-table"></i></span>#}
+                        <span class="icon"><i class="fas fa-user-cog"></i></span>
+                        <span class="list">User Management</span>
+                    </a>
+                </li>
+                {% if request.session.user_role == "super admin" %}
+                    <li>
+                        <a href="{% url 'user_management:organization_reg' %}" {% if request.path == '/organization_reg/' %}class="active"{% endif %}>
+                            {#                        <span class="icon"><i class=" fa fa-table"></i></span>#}
+                            <span class="icon"><i class="fas fa-industry"></i></span>
+                            <span class="list">Organization Registration</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'user_management:organization_list' %}" {% if request.path == '/organization_list/' %}class="active"{% endif %}>
+                            {#                        <span class="icon"><i class=" fa fa-table"></i></span>#}
+                            <span class="icon"><i class="fas fa-bars"></i></span>
+                            <span class="list">Organization List</span>
+                        </a>
+                    </li>
+
+                {% endif %}
+
+
+            </ul>
+
+
+            <div class="hamburger">
+                <div class="inner_hamburger">
+                  <span class="arrow">
+                      <i class="fas fa-bars"></i>
+                      <i class="fas fa-close"></i>
+                  </span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endif %}

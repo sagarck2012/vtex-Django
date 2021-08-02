@@ -1,0 +1,179 @@
+.vix{
+  background: #00001a;
+}
+
+
+.box{
+  padding: 10px 5px;
+  background: #1e1e2f;
+  border: 5px solid #00001a;
+  height: auto;
+  border-radius:10px;
+
+}
+
+  .legend{
+   text-align: center;
+   color: white;
+   margin-left: 5px;
+  }
+  .space_side{
+    margin-left: 10px;
+  }
+
+.pop{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.shadow {
+   -moz-box-shadow:    inset 0 0 10px #d9d9d9;
+   -webkit-box-shadow: inset 0 0 10px #d9d9d9;
+   box-shadow:         inset 0 0 10px #d9d9d9;
+}
+
+
+.box_h1{
+  font-size: 33px;
+  color: #00e6e6;
+  margin-top: 10px;
+  text-align: center;
+  font-family: var(--font-type);
+
+}
+ .box_h1 b{
+  font-size: 20px;
+  color: #00e6e6;
+  font-family: var(--font-type);
+}
+
+.box_h3{
+  font-size: 20px;
+  color: #e6ffff;
+  text-align: center;
+  font-family: var(--font-type);
+}
+.small_letter{
+  font-size: 30px;
+}
+
+
+
+.dot_r{
+  height: 12px;
+  width: 12px;
+  background-color: #ff1a1a;
+  border-radius: 50%;
+  display: inline-block;
+  animation: blinker 1.5s linear infinite;
+  margin-bottom: 5px;
+  margin-top: 9px;
+/*  margin-left: 40px;*/
+
+}
+@keyframes blinker {  
+  50% { opacity: 0; }
+}
+
+/*/ GREEN dot for machine online/running / */
+  .dot_g{
+  height: 12px;
+  width: 12px;
+  background-color: #00e600;
+  border-radius: 50%;
+  display: inline-block;
+  margin-bottom: 5px;
+  margin-top: 9px;
+/*  margin-left: 40px;*/
+}
+
+.dev_a{
+   height: 12px;
+  width: 12px;
+  background-color: #1e1e2f;
+  border-radius: 10%;
+  display: inline-block;
+  margin-bottom: 5px;
+  margin-top: 9px;
+}
+.dev_ia{
+   height: 12px;
+  width: 12px;
+  background-color:#595959 ;
+  border-radius: 10%;
+  display: inline-block;
+  margin-bottom: 5px;
+  margin-top: 9px;
+}
+
+/*/ YELLOW dot for machine with issues (i.e slow speed) / */
+  .dot_y{
+  height: 12px;
+  width: 12px;
+  background-color: #ffdd40;
+  border-radius: 50%;
+  display: inline-block;
+  margin-bottom: 5px;
+  margin-top: 9px;
+  /*margin-left: 40px;*/
+}
+  .b{
+   text-align: center;
+   background-color: 000000
+   font-color :#ffffff;
+  }
+  .rpm{
+    font-size: 25px;
+    /*margin-right: 40px;*/
+ text-align: center;
+    color: #33cccc;
+  }
+
+  .progress_outter{
+    border-radius: 25px;
+    margin-left: 15px;
+    margin-right: 15px;
+    background: #00001a;
+    box-shadow: inset 5px 5px 10px #0c0c13, 
+    inset -5px -5px 10px #30304b;
+    height: 10px;
+
+
+  }
+
+  
+  .progres_inner{
+
+  background: white;
+    margin-bottom: 0px;
+    height: 10px;
+    border-radius: 18px;
+    background: #0066ff;
+
+}
+
+
+.box_h3 i{
+  font-size: 20px;
+  color: #ffff;
+  text-align: center;
+}
+b{
+  color: #00ffff;
+
+}
+
+.inactive{
+ padding: 10px 5px;
+  background: #1e1e2f;
+  border: 5px solid #00001a;
+  height: auto;
+  border-radius:10px;
+  opacity: 0.6;
+  border-radius: 10px;
+background: #595959;
+box-shadow: inset 6px 6px 12px #313131, 
+            inset -6px -6px 12px #818181;
+}
+/*box-shadow: inset -5px 5px 10px #ff0000, 
+            inset 5px -5px 10px #ff0000;*/

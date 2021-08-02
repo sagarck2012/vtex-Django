@@ -1,0 +1,89 @@
+{% load static %}
+<html>
+<title>home</title>
+<head></head>
+<body>
+Home page
+<p>user_name: {{ request.session.user_name }}</p>
+<p>
+    <a href="{% url 'user_management:user_reg' %}">Add User</a>&nbsp;
+    <a href="{% url 'user_management:user_list' %}">User List</a>&nbsp;
+    <a href="{% url 'user_management:change_password'%}">password change</a>
+    <a href="{% url 'user_management:logout' %}">Log out</a>
+
+</p>
+
+<h1 id="time">{{today}}</h1>
+
+<br>
+<br>
+Total: {{ total }}
+Online: {{ online }}
+Offline: {{ offline }}
+<br>
+<ul>
+    {% for data in machine_list %}
+        <li>
+
+            Machine no: {{ data.machine_no }};
+            Status: {% if data.status == 0 %}red
+        {% elif data.status == 1 %}green
+        {% else %}yellow{% endif %}
+            Runtime: {{data.runtime}} %
+        </li>
+    {% endfor %}
+</ul>
+<script src="{% static '' %}js/main.js"></script>
+<script src="{% static '' %}js/jquery-3.3.1.min.js"></script>
+
+{######################AJAX CALL######################}
+<script>
+    function update_data(){
+        console.log('function is being called')
+        $.ajax({
+            url: 'get_machine_data',
+
+            dataType: 'json',
+            success: function (data) {
+
+                console.log(data);
+                let time_now = data["today"];
+
+
+
+                document.getElementById("time").innerHTML = time_now;
+
+            },
+            error: function (jqXHR, exception) {
+                let msg = '';
+                if (jqXHR.status === 0) {
+                    msg = 'Not connect.\n Verify Network.';
+                } else if (jqXHR.status == 404) {
+                    msg = 'Requested page not found. [404]';
+                } else if (jqXHR.status == 500) {
+                    msg = 'Internal Server Error [500].';
+                } else if (exception === 'parsererror') {
+                    msg = 'Requested JSON parse failed.';
+                } else if (exception === 'timeout') {
+                    msg = 'Time out error.';
+                } else if (exception === 'abort') {
+                    msg = 'Ajax request aborted.';
+                } else {
+                    msg = 'Uncaught Error.\n' + jqXHR.responseText;
+                }
+                console.log(msg);
+            },
+
+
+        });
+
+    }
+
+    {# Making AJAX CALL every 30 seconds #}
+    setInterval(function(){
+        update_data()}, 30000)
+</script>
+</body>
+</html>
+
+

@@ -1,0 +1,36 @@
+.step_align{
+  text-align:center;
+  margin-top:40px;
+  margin-bottom: -10px;
+}
+
+
+.tab {
+  display: none;
+}
+
+
+#prevBtn {
+  background-color: #8c8c8c;
+
+}
+
+/* Make circles that indicate the steps of the form: */
+.step {
+  height: 12px;
+  width: 12px;
+  margin: 0 5px;
+  background-color: #bbbbbb;
+  border: none;  
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.step.active {
+  opacity: 1;
+}
+
+/* Mark the steps that are finished and valid: */
+.step.finish {
+  background-color: #00ccff;
+}

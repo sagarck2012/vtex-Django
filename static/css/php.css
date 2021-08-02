@@ -1,0 +1,115 @@
+
+
+  .cenetr_date{
+    text-align: left;
+  }
+#gaschart1{
+  background: transparent;
+  width: auto;
+  height: 270px;
+  margin-top: 20px;
+}
+#Runtime{
+  background: transparent;
+  width: auto;
+  height: 270px;
+  margin-top: 20px;
+}
+
+
+
+.smcon{
+  height: 165px;
+  width: 245px;
+  background: #fff;
+  align-items: center;
+  position:relative;
+ border: 5px solid #e6fff5;
+ box-shadow: -5px -5px 10px rgba(255,255,255,0.05),
+        5px 5px 15px rgba(0,0,0,0.2);
+ 
+}
+.smcon .fas{
+  font-size: 50px;
+  position:absolute;
+    top:40%;
+    left:40%;
+    color: #00ff99;
+
+  }
+  .smcon h4{
+    font-size: 20px;
+    background: #1ad1ff;
+    color: #00ff99;
+    text-align: center;
+  }
+  .smcon:hover{
+    background: #3399ff;
+    
+  }
+
+.smcon :hover.fas{
+  font-size: 50px;
+  position:absolute;
+    top:40%;
+    left:40%;
+    color: #fff;
+
+  }
+  .smcon :hover h4{
+    font-size: 20px;
+    background: #fff;
+    color: #3399ff;
+    text-align: center;
+  }
+
+
+/* ////////////////////////*/
+
+.custom_icon{
+  font-size: 35px;
+  text-align: center;
+  margin-top: 35px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: -webkit-linear-gradient(#1ad1ff, #00ff99);
+  color: white;
+
+
+}
+.custom_icon .fas{
+  align-items: center;
+}
+.custom_icon2{
+  font-size: 35px;
+  text-align: center;
+  margin-top: 35px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #e6b800;
+  color: white;
+
+
+}
+
+.glyphicon-fire:before {
+    content: "\e104";
+    align-items: center;
+    margin-left: -5px;
+    margin-top: 40px;
+}
+
+.mt_20{
+  margin-top: 20px;
+}
+
+.left{
+  color: #00e6e6;
+  position: fixed;
+
+}
+
+
+

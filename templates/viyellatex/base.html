@@ -1,0 +1,123 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Viyellatex</title>
+    <!-- <link rel="stylesheet" href="topnav_styles.css"> -->
+    {% block detalil_page_style1 %}
+    {% endblock %}
+    {% block home_page_style1 %}
+    {% endblock %}
+    <link rel="stylesheet" href="{% static '' %}css/trytopnav.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="{% static '' %}css/php.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+    <script src="{% static '' %}js/fullscreen.js"></script>
+
+    <!-- ////////////////table/////////// -->
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css">
+
+    <script src="{% static '' %}js/datatable.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static '' %}css/datatable.css">
+    {% block detail_page_script1 %}
+    {% endblock %}
+
+
+
+
+    <script>
+        $(document).ready(function(){
+            $(".hamburger").click(function(){
+                $(".wrapper").toggleClass("active")
+            })
+        });
+    </script>
+    <script>
+        $(document).ready(function(){
+            $(".profile .icon_wrap").click(function(){
+                $(this).parent().toggleClass("active");
+                $(".notifications").removeClass("active");
+            });
+
+            $(".notifications .icon_wrap").click(function(){
+                $(this).parent().toggleClass("active");
+                $(".profile").removeClass("active");
+            });
+
+            $(".show_all .link").click(function(){
+                $(".notifications").removeClass("active");
+                $(".popup").show();
+            });
+
+            $(".close").click(function(){
+                $(".popup").hide();
+            });
+        });
+    </script>
+
+
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.12/js/select2.min.js" ></script>
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.12/css/select2.min.css">
+    {% block homepage_style2 %}
+    {% endblock %}
+</head>
+<body>
+
+
+{% include 'include/topbar.html' %}
+
+
+<div class="wrapper active">
+    <div class="main_body ">
+
+        {% include 'include/sidebar.html' %}
+
+        {% block content %}
+        {% endblock %}
+
+        {% block detail_page_script2 %}
+        {% endblock %}
+        {% block additionaljs %}
+        {% endblock %}
+
+
+    </div>
+</div>
+
+
+</div>
+</div>
+
+
+</body>
+</html>
